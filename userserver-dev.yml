@@ -1,0 +1,66 @@
+spring:
+  http:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+  profiles:
+    default: test
+    active: test
+  output:
+    ansi:
+      enabled: ALWAYS
+  mvc:
+    throw-exception-if-no-handler: true
+  redis:
+    host: steydevredis.redis.cache.chinacloudapi.cn
+    port: 6379
+    password: ENC(Cd4KCp35X5KaXE4qO5Z1zf1o4sR+NhqPHFfjbzRKUq9bypAs4X4tBUF+tO6yUqPrfP06Sjcfj0o=)
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://stnddb00001.database.chinacloudapi.cn:1433;database=stey
+    username: ENC(h4MvnfRzJ3bgKzyH9CvQl3UJjAZMd9ndyFk6KIWHZnk=)
+    password: ENC(jzKMpPBEE6KAUqsJFkWGaMA6sxvIWPV6)    
+logging:
+  charset: UTF-8
+  file: logs/stey.userserver.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework.web: WARN
+    ${artifactName}: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://steyfort:password123@localhost:8088/eureka
+  instance:
+    prefer-ip-address: true
+security:
+  oauth2:
+    resource:
+      id: userserver
+      user-info-uri: http://localhost:80/uaa/user
+      prefer-token-info: false
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+feign.hystirx.enable: true
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    password: U3RleUVuA3J5cHRLZXkyXKs3z==
+stey:
+  security:
+    mobileLoginVerCodeLength: 6
+    mobileLoginVerCodeExp: 60
+    emailResetPasswordVerCodeLength: 4
+    emailResetPasswordVerCodeExp: 7200
+    resetPasswordPageUrl: forgot-password-code
+    verifyEmailPageUrl: verify-email-result
+    steyIDLength: 6
+  web:
+    webserverRoot: http://steydevweb.chinanorth.cloudapp.chinacloudapi.cn/
+  azure:
+    blob:
+      uploadByteLimit: 5242880
+      storageConnectionString: DefaultEndpointsProtocol=https;AccountName=steyfiles;AccountKey=RUeduuRxACTWQciGKkNCdhliJC7SO7Ft/XU39ZSzPAmZOXyCjcZ3CcLIwW3U+Jzpb1XB8JIxPRJfnqD07dGEAw==;EndpointSuffix=core.chinacloudapi.cn
+      endpoitPath: http://steyfiles.blob.core.chinacloudapi.cn/steyfiles/
+      containName: steyfiles

@@ -29,12 +29,6 @@ logging:
   level:
     org.springframework.web: WARN
     ${artifactName}: DEBUG
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://steyfort:password123@localhost:8088/eureka
-  instance:
-    prefer-ip-address: true
 security:
   oauth2:
     resource:
